@@ -54,7 +54,7 @@ dist-wheel = 'dist/pyCFML/wheel'            # for Python wheel
 
 [template]
 clone-repo = 'git clone --single-branch --branch {BRANCH} {URL} {OUT_PATH}'
-build-obj = '{COMPILER} {OPTIONS} -c {PATH} -I {INCLUDE}'
+build-obj = '{COMPILER} {OPTIONS} -c {PATH} -I {INCLUDE} {EXTRA}'
 build-static.macos = 'ar -r {LIB}.a *.{OBJ_EXT}'
 build-static.linux = 'ar -r {LIB}.a *.{OBJ_EXT}'
 build-static.windows = 'lib /out:{LIB}.lib *.{OBJ_EXT}'
@@ -112,10 +112,11 @@ platforms = ['windows']
 compilers = ['ifort', 'ifx']
 obj-ext = 'obj'
 build-shared = 'link CFML_Wraps.{OBJ_EXT} Wraps_*.{OBJ_EXT} {PATH}.{OBJ_EXT} /out:"{PATH}.{EXT}" /libpath:{CFML_LIB_PATH} /dll {CFML_LIB_NAME}.lib {PYTHON_LIB}'
-build-exe = '{COMPILER} {OPTIONS} /exe:{EXE_NAME} {SOURCE_PATH} -I {CFML_INCLUDE_PATH} {CFML_LIB_DIR}\{CFML_LIB_NAME}.{LIB_EXT}'
-modes.base = '/fpp /heap-arrays /nologo -DWIN32=ON'
+build-exe = '{COMPILER} {OPTIONS} /exe:{EXE_NAME} {SOURCE_PATH} -I {CFML_INCLUDE_PATH} {CFML_LIB_DIR}\{CFML_LIB_NAME}.{LIB_EXT} {EXTRA}'
+modes.base = '-DWIN32=ON /fpp /heap-arrays /nologo'
 modes.debug = ''
 modes.release = '-O2'
+modes.extra = '/link /NODEFAULTLIB:libmmt.lib'
 
 [build]
 src-ext = 'f90'
@@ -359,6 +360,9 @@ components-files = [
     'Random_T_Sm'
 ]
 
+#[[src-cfml-modules]]
+#main-file = 'CFML_Messages_Win' # !!!???
+
 [[src-cfml-modules]]
 main-file = 'CFML_Messages'
 components-dir = 'CFML_Messages'
@@ -367,13 +371,13 @@ components-files = [
     'Con_Info_Message',
     'Con_Err_Message',
     'Con_Write_ScrollMsg',
-    'Con_Wait_Message'#,
-    #'Win_Err_Message',
-    #'Win_Info_Message',
-    #'Win_Question_Message',
-    #'Win_Stop_Message',
-    #'Win_Warning_Message',
-    #'Win_Write_ScrollMsg'
+    'Con_Wait_Message'#, ???
+    #'Win_Err_Message', ???
+    #'Win_Info_Message', ???
+    #'Win_Question_Message', ???
+    #'Win_Stop_Message', ???
+    #'Win_Warning_Message', ???
+    #'Win_Write_ScrollMsg' ???
 ]
 
 [[src-cfml-modules]]
@@ -415,6 +419,9 @@ main-file = 'CFML_SuperSpace_Database'
 [[src-cfml-modules]]
 main-file = 'CFML_Magnetic_Database'
 
+#[[src-cfml-modules]]
+#main-file = 'CFML_magSuperSpace_Database' # !!!???
+
 [[src-cfml-modules]]
 main-file = 'CFML_BVS_Tables'
 
@@ -430,6 +437,8 @@ main-file = 'CFML_Symmetry_Tables'
 [[src-cfml-modules]]
 components-dir = 'CFML_Tables'
 components-files = [
+    #'MSGsymbols_proposal.txt' ??????
+    #'MSGsymbols_proposal2.txt' ??????
     'Tab_Del_BVST',
     'Tab_Set_BVST',
     'Tab_Set_ScatterT',
@@ -446,7 +455,7 @@ components-files = [
     'Tab_Read_SSG_DBase',
     'Tab_Allocating_MagneticDBase',
     'Tab_Read_MagneticDBase'#,
-    #'Tab_Allocating_magSuperSpaceDBase',
+    #'Tab_Allocating_magSuperSpaceDBase', ???
     #'Tab_Read_magSSG_DBase'
 ]
 

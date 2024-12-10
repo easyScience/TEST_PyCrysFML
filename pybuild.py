@@ -251,6 +251,16 @@ def _compiler_options():
             break
     return options
 
+def _extra_compiler_options():
+    compiler = _compiler_name()
+    extra = ''
+    for build in CONFIG['build-configs']:
+        if _platform() in build['platforms'] and compiler in build['compilers']:
+            if 'extra' in build['modes']:
+                extra += f" {build['modes']['extra']}"
+            break
+    return extra
+
 def _obj_ext():
     compiler = _compiler_name()
     ext = ''
@@ -298,9 +308,10 @@ def _compiling_progress(current: int, total: int):
     return progress
 
 def _compile_obj_script_line(src_path: str,
-                                   include_path: str=''):
+                             include_path: str=''):
     compiler = _compiler_name()
     options = _compiler_options()
+    extra = _extra_compiler_options()
     template_cmd = CONFIG['template']['build-obj']
     if not include_path:
         template_cmd = template_cmd.replace(' -I {INCLUDE}', '')
@@ -310,6 +321,7 @@ def _compile_obj_script_line(src_path: str,
     cmd = cmd.replace('{COMPILER}', compiler)
     cmd = cmd.replace('{OPTIONS}', options)
     cmd = cmd.replace('{PATH}', src_path)
+    cmd = cmd.replace('{EXTRA}', extra)
     return cmd
 
 def _compile_pycfml_shared_obj_or_dynamic_lib_script_line():
@@ -337,6 +349,7 @@ def _compile_objs_script_lines(modules: str,
                                include_path: str=''):
     compiler = _compiler_name()
     options = _compiler_options()
+    extra = _extra_compiler_options()
     src_ext = CONFIG['build']['src-ext']
     template_cmd = CONFIG['template']['build-obj']
     if not include_path:
@@ -357,6 +370,7 @@ def _compile_objs_script_lines(modules: str,
             cmd = cmd.replace('{COMPILER}', compiler)
             cmd = cmd.replace('{OPTIONS}', options)
             cmd = cmd.replace('{PATH}', path)
+            cmd = cmd.replace('{EXTRA}', extra)
             lines.append(cmd)
         if 'components-dir' in module and 'components-files' in module:
             components_dir = module['components-dir']
@@ -371,6 +385,7 @@ def _compile_objs_script_lines(modules: str,
                 cmd = cmd.replace('{COMPILER}', compiler)
                 cmd = cmd.replace('{OPTIONS}', options)
                 cmd = cmd.replace('{PATH}', path)
+                cmd = cmd.replace('{EXTRA}', extra)
                 cmd = f'{cmd}&'  # start this bash command in background for parallel compilation
                 lines.append(cmd)
                 if current % 11 == 0:  # do not parallelise for more than 10 compilations
@@ -418,6 +433,7 @@ def _compile_executables_script_lines(modules: str,
     template_cmd = _compiler_build_exe_template()
     compiler = _compiler_name()
     options = _compiler_options()
+    extra = _extra_compiler_options()
     total = _total_src_file_count(modules)
     current = 0
     lines = []
@@ -438,6 +454,7 @@ def _compile_executables_script_lines(modules: str,
         cmd = cmd.replace('{CFML_LIB_DIR}', lib_dir)
         cmd = cmd.replace('{CFML_LIB_NAME}', lib_name)
         cmd = cmd.replace('{LIB_EXT}', lib_ext)
+        cmd = cmd.replace('{EXTRA}', extra)
         #lines.append(f"echo '>>>>> {cmd}'")
         lines.append(cmd)
     return lines
@@ -504,6 +521,8 @@ def loaded_config(name: str):
             config['build-configs'][idx]['modes']['base'] = build['modes']['base'].replace('/', '-')
             config['build-configs'][idx]['modes']['debug'] = build['modes']['debug'].replace('/', '-')
             config['build-configs'][idx]['modes']['release'] = build['modes']['release'].replace('/', '-')
+            if 'extra' in build['modes']:
+                config['build-configs'][idx]['modes']['extra'] = build['modes']['extra'].replace('/', '-')
     return config
 
 def clear_main_script():
