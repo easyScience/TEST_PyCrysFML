@@ -116,7 +116,7 @@ build-exe = '{COMPILER} {OPTIONS} /exe:{EXE_NAME} {SOURCE_PATH} -I {CFML_INCLUDE
 modes.base = '-DWIN32=ON /fpp /heap-arrays /nologo'
 modes.debug = ''
 modes.release = '-O2'
-modes.extra = '/link ucrt.lib'
+modes.extra = '/MD'
 
 [build]
 src-ext = 'f90'
