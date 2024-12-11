@@ -1207,7 +1207,8 @@ def copy_extra_libs_to_pycfml_dist():
     package_abspath = os.path.join(_project_path(), package_relpath)
     lines = []
     for lib_path in extra_libs:
-        msg = _echo_msg(f"Copying {lib_path} to dist dir '{package_relpath}'")
+        display_lib_path = lib_path.replace('"', '')
+        msg = _echo_msg(f"Copying '{display_lib_path}' to dist dir '{package_relpath}'")
         lines.append(msg)
         cmd = f'cp {lib_path} {package_abspath}'
         lines.append(cmd)

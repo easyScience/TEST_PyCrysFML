@@ -200,11 +200,22 @@ extra-libs.windows.AMD64.gfortran = [
     'C:\mingw64\bin\libquadmath-0.dll',
     'C:\mingw64\bin\libwinpthread-1.dll',
 ]
-extra-libs.windows.Intel64.gfortran = [
-    'C:\mingw64\bin\libgcc_s_seh-1.dll',
-    'C:\mingw64\bin\libgfortran-5.dll',
-    'C:\mingw64\bin\libquadmath-0.dll',
-    'C:\mingw64\bin\libwinpthread-1.dll',
+#extra-libs.windows.Intel64.gfortran = [
+#    'C:\mingw64\bin\libgcc_s_seh-1.dll',
+#    'C:\mingw64\bin\libgfortran-5.dll',
+#    'C:\mingw64\bin\libquadmath-0.dll',
+#    'C:\mingw64\bin\libwinpthread-1.dll',
+#]
+# In PowerShell can be found with: where.exe /r "C:\Program Files (x86)\Intel\oneAPI" libifcoremd.dll
+extra-libs.windows.AMD64.ifort = [
+    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libifcoremd.dll"',
+    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libiomp5md.dll"',
+    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libmmd.dll"',
+]
+extra-libs.windows.AMD64.ifx = [
+    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libifcoremd.dll"',
+    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libiomp5md.dll"',
+    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libmmd.dll"',
 ]
 rpaths.linux.x86_64.gfortran = [
     { old = '', new = "'$ORIGIN'" },
