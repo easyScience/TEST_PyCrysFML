@@ -166,9 +166,12 @@ jobs:
         shell: bash
         run: scripts/install_pycfml_from_wheel.sh
 
-      - name: Debug 3
+      - name: Debug 3a
         shell: bash
         run: ls -l C:/hostedtoolcache/windows/Python/3.11.9/x64/Lib/site-packages/pycrysfml
+
+      - name: Debug 3b
+        run: dumpbin /dependents C:\hostedtoolcache\windows\Python\3.11.9\x64\Lib\site-packages\pycrysfml\crysfml08lib.pyd
 
       - name: Run pyCFML unit tests
         shell: bash
