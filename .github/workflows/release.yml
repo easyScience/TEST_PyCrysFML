@@ -1,4 +1,4 @@
-name: debug-build-and-test
+name: release-build-and-test
 
 on:
   push:
@@ -19,28 +19,29 @@ jobs:
 
     timeout-minutes: 30
 
-    # current job matrix. if modified, remember to UPDATE the strategy in the next job
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-24.04, windows-2022, macos-13, macos-14]
+        python-version: ['3.10', '3.11', '3.12']
         toolchain:
           - { exe: gfortran, compiler: gcc, version: 13 }
-          - { exe: ifort, compiler: intel-classic, version: "2021.10" }
-          - { exe: ifx, compiler: intel, version: "2023.2" }
-        exclude:
-          - os: macos-13
-            toolchain: { exe: ifx, compiler: intel, version: "2023.2" } # no support for macOS
-          - os: macos-14
-            toolchain: { exe: ifx, compiler: intel, version: "2023.2" } # no support for macOS on arm64
-          - os: macos-14
-            toolchain: { exe: ifort, compiler: intel-classic, version: "2021.10" } # no support for macOS on arm64
 
     runs-on: ${{ matrix.os }}
 
     steps: # job steps
       - name: Check-out repository
         uses: actions/checkout@v4
+
+      - name: Declare env variables on push only
+        if: github.event_name == 'push'
+        shell: bash
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Declare env variables on pull_request only
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$GITHUB_HEAD_REF" >> $GITHUB_ENV
 
       - name: Set up Fortran compiler (FC) [all except Windows + gfortran] # except: use pre-installed gfortran
         if: runner.os != 'Windows' || matrix.toolchain.exe != 'gfortran'
@@ -57,7 +58,7 @@ jobs:
       - name: Set up Python environment
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: ${{ matrix.python-version }}
 
       - name: Upgrade package installer for Python
         shell: bash
@@ -79,15 +80,15 @@ jobs:
           --create-scripts
           --platform ${{ runner.os }}
           --compiler ${{ matrix.toolchain.exe }}
-          --mode debug
+          --mode release
           --bash-syntax
           --enable-backslash-escapes
 
-      - name: Print build-specific variables
+      - name: Print some build-specific variables
         shell: bash
         run: scripts/print_build_variables.sh  # bash -x scripts/print_build_variables.sh for printing commands
 
-      - name: Create CFML and pyCFML directories
+      - name: Create scripts, CFML and pyCFML directories
         shell: bash
         run: |
           scripts/create_cfml_repo_dir.sh
@@ -152,8 +153,6 @@ jobs:
           scripts/validate_pyproject_toml.sh
           scripts/create_pycfml_python_wheel.sh
           scripts/rename_pycfml_python_wheel.sh
-          scripts/detect_abi3_violations.sh
-          scripts/check_wheel_contents.sh
 
       - name: Install pyCFML from created Python package wheel
         shell: bash
@@ -169,15 +168,46 @@ jobs:
 
       - name: Prepare for uploading Python package wheel of pyCFML
         shell: bash
-        run: echo "WHEEL_DIR=$(python3 pybuild.py --print-wheel-dir)" >> $GITHUB_ENV
+        run: |
+          echo "WHEEL_DIR=$(python3 pybuild.py --print-wheel-dir)" >> $GITHUB_ENV
+          echo "RELEASE_VERSION=$(python3 pybuild.py --print-release-version)" >> $GITHUB_ENV
+          echo "RELEASE_TITLE=$(python3 pybuild.py --print-release-title)" >> $GITHUB_ENV
 
       - name: Upload zipped Python package wheel of pyCFML for next job
         uses: actions/upload-artifact@v4
         with:  # if name or path modified, remember to UPDATE those in the download step of the next job
-          name: pycfml-wheel_${{ matrix.os }}_${{ matrix.toolchain.exe }} # name (without .zip) of the zip file to be uploaded
-          path: ${{ env.WHEEL_DIR }}  # all files in this directory will be zipped
+          name: pycfml-wheel_${{ matrix.os }}_${{ matrix.python-version }} # name (without .zip) of the zip file to be uploaded
+          path: ${{ env.WHEEL_DIR }}  # all files from this directory are zipped
           if-no-files-found: "error"
           compression-level: 0
+
+      - name: Upload Python package wheel to releases (non-master branch)
+        if: github.event_name == 'push' && env.BRANCH_NAME != 'master'
+        uses: ncipollo/release-action@v1
+        with:
+          draft: true
+          prerelease: true
+          allowUpdates: true
+          replacesArtifacts: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "${{ env.WHEEL_DIR }}/*.whl"
+          tag: ${{ env.BRANCH_NAME }}
+          name: ${{ env.BRANCH_NAME }}
+          bodyFile: "RELEASE.md"
+
+      - name: Upload Python package wheel to releases (master branch)
+        if: github.event_name == 'push' && env.BRANCH_NAME == 'master'
+        uses: ncipollo/release-action@v1
+        with:
+          draft: true
+          prerelease: true
+          allowUpdates: true
+          replacesArtifacts: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "${{ env.WHEEL_DIR }}/*.whl"
+          tag: ${{ env.RELEASE_VERSION }}
+          name: ${{ env.RELEASE_TITLE }}
+          bodyFile: "RELEASE.md"
 
   ##############################################################################
   # JOB 2
@@ -194,17 +224,9 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-24.04, windows-2022, macos-13, macos-14]
+        python-version: ['3.10', '3.11', '3.12']
         toolchain:
           - { exe: gfortran, compiler: gcc, version: 13 }
-          - { exe: ifort, compiler: intel-classic, version: "2021.10" }
-          - { exe: ifx, compiler: intel, version: "2023.2" }
-        exclude:
-          - os: macos-13
-            toolchain: { exe: ifx, compiler: intel, version: "2023.2" } # no support for macOS
-          - os: macos-14
-            toolchain: { exe: ifx, compiler: intel, version: "2023.2" } # no support for macOS on arm64
-          - os: macos-14
-            toolchain: { exe: ifort, compiler: intel-classic, version: "2021.10" } # no support for macOS on arm64
 
     runs-on: ${{ matrix.os }}
 
@@ -215,7 +237,7 @@ jobs:
       - name: Set up python environment
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: ${{ matrix.python-version }}
 
       - name: Upgrade package installer for Python
         shell: bash
@@ -232,7 +254,7 @@ jobs:
           --create-scripts
           --platform ${{ runner.os }}
           --compiler ${{ matrix.toolchain.exe }}
-          --mode debug
+          --mode release
           --bash-syntax
           --enable-backslash-escapes
 
@@ -243,7 +265,7 @@ jobs:
       - name: Download zipped pyCFML wheel from previous job
         uses: actions/download-artifact@v4
         with:  # name or path are taken from the upload step of the previous job
-          name: pycfml-wheel_${{ matrix.os }}_${{ matrix.toolchain.exe }}  # name (without .zip) of the zipped artifact uploaded on the previous jobs
+          name: pycfml-wheel_${{ matrix.os }}_${{ matrix.python-version }}  # name (without .zip) of the zipped artifact uploaded on the previous jobs
           path: ${{ env.WHEEL_DIR }}  # directory to extract downloaded zipped artifacts
 
       - name: Install pyCFML from downloaded Python package wheel
@@ -257,3 +279,21 @@ jobs:
       - name: Run pyCFML functional tests (without benchmarks)
         shell: bash
         run: scripts/run_pycfml_functional_tests_no_benchmarks.sh
+
+      - name: Run pyCFML functional tests and compare benchmark results
+        if: "!contains(github.event.head_commit.message, '[save benchmark results]')"
+        shell: bash
+        run: scripts/run_pycfml_functional_tests_with_benchmarks_compare.sh
+
+      - name: Run pyCFML functional tests and save benchmark results
+        if: "contains(github.event.head_commit.message, '[save benchmark results]')"
+        shell: bash
+        run: scripts/run_pycfml_functional_tests_with_benchmarks_save.sh
+
+      - name: Push benchmark results to repository
+        if: ${{ env.BRANCH_NAME != 'master' && contains(github.event.head_commit.message, '[save benchmark results]') }}
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: '.benchmarks/pyCFML'
+          message: 'Auto push pyCFML benchmarks : ${{ github.workflow }} : ${{ matrix.os }} : ${{ matrix.python-version }}'
+          pull: '--rebase --autostash'

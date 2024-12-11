@@ -207,15 +207,16 @@ extra-libs.windows.AMD64.gfortran = [
 #    'C:\mingw64\bin\libwinpthread-1.dll',
 #]
 # In PowerShell can be found with: where.exe /r "C:\Program Files (x86)\Intel\oneAPI" libifcoremd.dll
+# To see the dependencies: dumpbin /dependents C:\hostedtoolcache\windows\Python\3.11.9\x64\Lib\site-packages\pycrysfml\crysfml08lib.pyd
 extra-libs.windows.AMD64.ifort = [
     '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libifcoremd.dll"',
-    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libiomp5md.dll"',
+    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libiomp5md.dll"',  # needed on Nebil computer, but not on GitHub...
     '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libmmd.dll"',
     '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\svml_dispmd.dll"',
 ]
 extra-libs.windows.AMD64.ifx = [
     '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libifcoremd.dll"',
-    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libiomp5md.dll"',
+    '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libiomp5md.dll"',  # needed on Nebil computer, but not on GitHub...
     '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\libmmd.dll"',
     '"C:\Program Files (x86)\Intel\oneAPI\compiler\latest\windows\redist\intel64_win\compiler\svml_dispmd.dll"',
 ]
