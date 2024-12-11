@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04, windows-2022, macos-13, macos-14]
+        os: [windows-2022]
         toolchain:
           - { exe: gfortran, compiler: gcc, version: 13 }
           - { exe: ifort, compiler: intel-classic, version: "2021.10" }
@@ -58,6 +58,29 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Debug 0
+        shell: bash
+        run: ls -l "C:/Program Files (x86)/Intel/oneAPI/"
+
+      - name: Debug 1
+        shell: bash
+        run: ls -l "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/"
+
+      - name: Debug 2
+        shell: bash
+        run: ls -l "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/"
+
+      - name: Debug 3
+        shell: bash
+        run: ls -l "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/lib/"
+
+      - name: Debug 4
+        shell: bash
+        run: ls -l "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/lib/"
+
+      - name: Debug 5
+        run: where.exe /r "C:\Program Files (x86)\Intel\oneAPI" libifcoremd.dll
 
       - name: Upgrade package installer for Python
         shell: bash
@@ -193,7 +216,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04, windows-2022, macos-13, macos-14]  # [ubuntu-22.04, windows-2022, macos-13, flyci-macos-14-m2]
+        os: [windows-2022]  # [ubuntu-22.04, windows-2022, macos-13, flyci-macos-14-m2]
         toolchain:
           - { exe: gfortran, compiler: gcc, version: 13 }
           - { exe: ifort, compiler: intel-classic, version: "2021.10" }
