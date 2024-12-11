@@ -59,12 +59,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Debug 1
-        run: where.exe /r "C:\Program Files (x86)\Intel\oneAPI" libifcoremd.dll
-      - name: Debug 2
-        run: where.exe /r "C:\Program Files (x86)\Intel\oneAPI" libiomp5md.dll
-      - name: Debug 3
-        run: where.exe /r "C:\Program Files (x86)\Intel\oneAPI" libmmd.dll
+      #- name: Debug 1
+      #  run: where.exe /r "C:\Program Files (x86)\Intel\oneAPI" libifcoremd.dll
+      #- name: Debug 2
+      #  run: where.exe /r "C:\Program Files (x86)\Intel\oneAPI" libiomp5md.dll
+      #- name: Debug 3
+      #  run: where.exe /r "C:\Program Files (x86)\Intel\oneAPI" libmmd.dll
 
       - name: Upgrade package installer for Python
         shell: bash
@@ -165,6 +165,10 @@ jobs:
       - name: Install pyCFML from created Python package wheel
         shell: bash
         run: scripts/install_pycfml_from_wheel.sh
+
+      - name: Debug 3
+        shell: bash
+        run: ls -l C:/hostedtoolcache/windows/Python/3.11.9/x64/Lib/site-packages/pycrysfml
 
       - name: Run pyCFML unit tests
         shell: bash
