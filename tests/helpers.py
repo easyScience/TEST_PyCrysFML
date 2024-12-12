@@ -1,7 +1,9 @@
+import json
 import inspect
 import os
 import platform
 import numpy as np
+import re
 from io import StringIO
 
 def set_crysfml_db():
@@ -21,6 +23,12 @@ def path_to_actual(file_name:str=''):
 def path_to_desired(file_name:str=''):
     caller = inspect.stack()[1].filename
     abspath = os.path.join(os.path.dirname(caller), 'desired', file_name)
+    relpath = os.path.relpath(abspath)
+    return relpath
+
+def path_to_data(file_name:str=''):
+    caller = inspect.stack()[1].filename
+    abspath = os.path.join(os.path.dirname(caller), 'data', file_name)
     relpath = os.path.relpath(abspath)
     return relpath
 
@@ -62,3 +70,24 @@ def dat_to_ndarray(file_name:str,
     joined = '\n'.join(lines)  # joins into single string
     data = np.genfromtxt(StringIO(joined), usecols=usecols)  # converts string to ndarray
     return data
+
+def sub_to_ndarray(file_name:str):
+    """Parses the FullProf .SUB file to extract an array of data and converts it to a numpy array."""
+    with open(file_name, 'r') as file:
+        lines = file.readlines()  # reads into list
+    # Extracts the first three numbers from the first line
+    numbers = re.findall(r'\d+\.\d+|\d+', lines[0])[:3]
+    min, inc, max = list(map(float, numbers))
+    x_array = np.arange(start=min, stop=max+inc, step=inc)
+    # Extracts the data from the rest of the file
+    skip_begin = 1
+    del lines[:skip_begin]  # deletes requested number of first lines
+    joined = '\n'.join(lines)  # joins into single string
+    data = np.genfromtxt(StringIO(joined))  # converts string to ndarray
+    y_array = data.flatten()  # flattens 2D array into 1D
+    return x_array, y_array
+
+def load_from_json(file_name:str):
+    """Loads a JSON file."""
+    with open(file_name, 'r') as file:
+        return json.load(file)
