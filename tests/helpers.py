@@ -26,9 +26,9 @@ def path_to_desired(file_name:str=''):
     relpath = os.path.relpath(abspath)
     return relpath
 
-def path_to_data(file_name:str=''):
+def path_to_input(file_name:str=''):
     caller = inspect.stack()[1].filename
-    abspath = os.path.join(os.path.dirname(caller), 'data', file_name)
+    abspath = os.path.join(os.path.dirname(caller), 'input', file_name)
     relpath = os.path.relpath(abspath)
     return relpath
 

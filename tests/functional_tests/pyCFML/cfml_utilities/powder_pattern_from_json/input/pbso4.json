@@ -16,7 +16,7 @@
             "_fract_x": 0.18747,
             "_fract_y": 0.25,
             "_fract_z": 0.16698,
-            "_occupancy": 0.5,
+            "_occupancy": 1,
             "_adp_type": "Biso",
             "_B_iso_or_equiv": 1.25990
           },
@@ -26,7 +26,7 @@
             "_fract_x": 0.06536,
             "_fract_y": 0.25,
             "_fract_z": 0.68418,
-            "_occupancy": 0.5,
+            "_occupancy": 1,
             "_adp_type": "Biso",
             "_B_iso_or_equiv": 0.24963
           },
@@ -36,7 +36,7 @@
             "_fract_x": 0.90809,
             "_fract_y": 0.25,
             "_fract_z": 0.59548,
-            "_occupancy": 0.5,
+            "_occupancy": 1,
             "_adp_type": "Biso",
             "_B_iso_or_equiv": 1.90121
           },
@@ -46,7 +46,7 @@
             "_fract_x": 0.19380,
             "_fract_y": 0.25,
             "_fract_z": 0.54355,
-            "_occupancy": 0.5,
+            "_occupancy": 1,
             "_adp_type": "Biso",
             "_B_iso_or_equiv": 1.38270
           },
