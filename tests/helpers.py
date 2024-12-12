@@ -78,13 +78,13 @@ def sub_to_ndarray(file_name:str):
     # Extracts the first three numbers from the first line
     numbers = re.findall(r'\d+\.\d+|\d+', lines[0])[:3]
     min, inc, max = list(map(float, numbers))
-    x_array = np.arange(start=min, stop=max+inc, step=inc)
+    x_array = np.arange(start=min, stop=max+inc-(1e-5), step=inc)  # 1e-5 is to avoid extra point at the end
     # Extracts the data from the rest of the file
     skip_begin = 1
     del lines[:skip_begin]  # deletes requested number of first lines
-    joined = '\n'.join(lines)  # joins into single string
-    data = np.genfromtxt(StringIO(joined))  # converts string to ndarray
-    y_array = data.flatten()  # flattens 2D array into 1D
+    joined = ''.join(lines)  # joins into single string
+    joined = joined.replace('\n', ' ')  # replaces newlines with spaces
+    y_array = np.genfromtxt(StringIO(joined))  # converts string to ndarray
     return x_array, y_array
 
 def load_from_json(file_name:str):
