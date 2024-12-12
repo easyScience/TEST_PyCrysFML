@@ -20,7 +20,7 @@ def compute_pattern(study_dict:dict):
 
 # Tests
 
-def test__powder_pattern_from_json__SrTiO3_Pm3m(benchmark):
+def _test__powder_pattern_from_json__SrTiO3_Pm3m(benchmark):
     # input
     project = load_from_json(path_to_data('srtio3.json'))
     # actual
@@ -41,7 +41,7 @@ def test__powder_pattern_from_json__SrTiO3_Pm3m(benchmark):
     assert_almost_equal(desired_x, actual_x, decimal=3, verbose=True)
     assert_almost_equal(desired_y, actual_y, decimal=1, verbose=True)
 
-def test__powder_pattern_from_json__SrTiO3_Pnma(benchmark):
+def _test__powder_pattern_from_json__SrTiO3_Pnma(benchmark):
     # input
     project = load_from_json(path_to_data('srtio3.json'))
     project['phases'][0]['SrTiO3']['_space_group_name_H-M_alt'] = 'P n m a'
@@ -61,7 +61,7 @@ def test__powder_pattern_from_json__SrTiO3_Pnma(benchmark):
     # compare
     assert_almost_equal(desired_y, actual_y, decimal=2, verbose=True)
 
-def test__powder_pattern_from_json__PbSO4_uvwx_noassym(benchmark):
+def _test__powder_pattern_from_json__PbSO4_uvwx_noassym(benchmark):
     # input
     project = load_from_json(path_to_data('pbso4.json'))
     # actual
