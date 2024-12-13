@@ -1,0 +1,99 @@
+{
+  "phases": [
+    {
+	  "ncaf": {
+		"_space_group_name_H-M_alt": "I 21 3",
+        "_cell_length_a": 10.250256,
+        "_cell_length_b": 10.250256,
+        "_cell_length_c": 10.250256,
+        "_cell_angle_alpha": 90,
+        "_cell_angle_beta": 90,
+        "_cell_angle_gamma": 90,
+        "_atom_site": [
+          {
+            "_label": "Ca",
+            "_type_symbol": "Ca",
+            "_fract_x": 0.46610,
+            "_fract_y": 0.0,
+            "_fract_z": 0.25,
+            "_occupancy": 1,
+            "_adp_type": "Biso",
+            "_B_iso_or_equiv": 0.88770
+          },
+          {
+            "_label": "Al",
+            "_type_symbol": "Al",
+            "_fract_x": 0.25163,
+            "_fract_y": 0.25163,
+            "_fract_z": 0.25163,
+            "_occupancy": 1,
+            "_adp_type": "Biso",
+            "_B_iso_or_equiv": 0.65283
+          },
+          {
+            "_label": "Na",
+            "_type_symbol": "Na",
+            "_fract_x": 0.08472,
+            "_fract_y": 0.08472,
+            "_fract_z": 0.08472,
+            "_occupancy": 1,
+            "_adp_type": "Biso",
+            "_B_iso_or_equiv": 1.89281
+          },
+          {
+            "_label": "F1",
+            "_type_symbol": "F",
+            "_fract_x": 0.13748,
+            "_fract_y": 0.30533,
+            "_fract_z": 0.11947,
+            "_occupancy": 1,
+            "_adp_type": "Biso",
+            "_B_iso_or_equiv": 0.89562
+          },
+          {
+            "_label": "F2",
+            "_type_symbol": "F",
+            "_fract_x": 0.36263,
+            "_fract_y": 0.36333,
+            "_fract_z": 0.18669,
+            "_occupancy": 1,
+            "_adp_type": "Biso",
+            "_B_iso_or_equiv": 1.27227
+          },
+          {
+            "_label": "F3",
+            "_type_symbol": "F",
+            "_fract_x": 0.46120,
+            "_fract_y": 0.46120,
+            "_fract_z": 0.46120,
+            "_occupancy": 1,
+            "_adp_type": "Biso",
+            "_B_iso_or_equiv": 0.78071
+          }
+		]
+	  }
+	}
+  ],
+  "experiments": [
+    {
+      "npd": {
+        "_diffrn_radiation_probe": "neutron",
+        "_pd_jorg_vondreele_alpha0": -0.009276,
+        "_pd_jorg_vondreele_alpha1": 0.109623,
+        "_pd_jorg_vondreele_beta0": 0.006705,
+        "_pd_jorg_vondreele_beta1": 0.009708,
+        "_pd_jorg_vondreele_gamma0": 0.0,
+        "_pd_jorg_vondreele_gamma1": 0.0,
+        "_pd_jorg_vondreele_gamma2": 0.0,
+        "_pd_jorg_vondreele_sigma0": 0.0,
+        "_pd_jorg_vondreele_sigma1": 0.0,
+        "_pd_jorg_vondreele_sigma2": 15.6960,
+        "_pd_meas_tof_offset": -13.88168,
+        "_pd_meas_tof_dtt1": 20773.12305,
+        "_pd_meas_tof_dtt2": -1.08308,
+        "_pd_meas_tof_bank_angle": 152.827,
+        "_pd_meas_time_of_flight": [16192.666016, 16203.09375, 16213.52832, 16223.970703, 16234.418945, 16244.874023, 16255.334961, 16265.803711, 16276.279297, 16286.760742, 16297.25, 16307.745117, 16318.248047, 16328.756836, 16339.272461, 16349.794922, 16360.324219, 16370.860352, 16381.40332, 16391.953125]
+	  }
+    }
+  ]
+}

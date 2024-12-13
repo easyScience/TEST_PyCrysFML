@@ -91,3 +91,7 @@ def load_from_json(file_name:str):
     """Loads a JSON file."""
     with open(file_name, 'r') as file:
         return json.load(file)
+
+def chi_squared(calc:np.ndarray, meas:np.ndarray):
+    """Calculates the chi-squared value between two arrays."""
+    return np.sum((meas - calc)**2)

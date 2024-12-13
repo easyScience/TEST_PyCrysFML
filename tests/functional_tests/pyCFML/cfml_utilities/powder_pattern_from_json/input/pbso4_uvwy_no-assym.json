@@ -79,8 +79,8 @@
         "_pd_instr_reflex_asymmetry_p3": 0,
         "_pd_instr_reflex_asymmetry_p4": 0,
         "_pd_meas_2theta_offset": -0.14364,
-        "_pd_meas_2theta_range_min": 10.14364,
-        "_pd_meas_2theta_range_max": 155.59364,
+        "_pd_meas_2theta_range_min": 10.0,
+        "_pd_meas_2theta_range_max": 155.45,
         "_pd_meas_2theta_range_inc": 0.05
       }
     }

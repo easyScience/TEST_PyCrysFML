@@ -1,0 +1,75 @@
+ FILE with lines for soft distance and angle constraints (restraints).
+ It is intended to help editing PCR files with restraints by pasting, 
+ after correcting the values as wished, to the appropriate lines.  
+ Lines with repeated identical distances have been excluded because symmetry 
+ already force a hard constraint.
+ Accidental coincidences have also been excluded, check that in list of distances! 
+
+ Warning! 
+ Symmetry constrained angles have not been eliminated,
+ this has to be performed by hand!
+
+
+=> Total number of independent distances:    25
+   List of possible restraints: 
+
+ At1   At2  ITnum     T1        T2        T3          DIST   SIGMA
+  Pb    S       2   0.50000   0.00000  -0.50000      3.4179 0.0016
+  Pb    O1      4  -0.50000   0.50000   0.50000      2.6144 0.0018
+  Pb    O1      3   1.00000  -0.50000   1.00000      3.2671 0.0010
+  Pb    O2      1   0.00000   0.00000   0.00000      2.6189 0.0017
+  Pb    O2      2   0.50000   0.00000  -0.50000      3.0070 0.0008
+  Pb    O3      1   0.00000   0.00000  -1.00000      2.9119 0.0013
+  Pb    O3      3   0.00000   0.50000   1.00000      2.7309 0.0011
+  Pb    O3      2   0.50000   0.00000  -0.50000      2.6571 0.0011
+  S     O1      1  -1.00000   0.00000   0.00000      1.4692 0.0030
+  S     O1      4  -0.50000   0.50000   1.50000      3.2868 0.0030
+  S     O1      3   1.00000  -0.50000   1.00000      3.3328 0.0018
+  S     O2      1   0.00000   0.00000   0.00000      1.4607 0.0031
+  S     O3      1   0.00000   0.00000   0.00000      1.4889 0.0019
+  O1    O1      3   2.00000  -0.50000   1.00000      3.3870 0.0013
+  O1    O2      1   1.00000   0.00000   0.00000      2.4465 0.0023
+  O1    O2      4   0.50000   0.50000   1.50000      3.1040 0.0021
+  O1    O2      3   1.00000  -0.50000   1.00000      2.9928 0.0009
+  O1    O3      1   1.00000   0.00000   0.00000      2.4078 0.0016
+  O1    O3      4   0.50000   0.50000   1.50000      3.0953 0.0017
+  O1    O3      3   1.00000   0.50000   1.00000      3.1866 0.0016
+  O2    O3      1   0.00000   0.00000   0.00000      2.4004 0.0016
+  O2    O3      2   0.50000   0.00000  -0.50000      2.9258 0.0016
+  O3    O3     -1   0.00000   0.00000   2.00000      3.0121 0.0014
+  O3    O3     -3   0.00000  -0.50000   0.00000      2.9935 0.0012
+  O3    O3     -3   0.00000   0.50000   0.00000      2.4037 0.0012
+
+   ========================================= 
+   List of possible restraints in CFL format 
+   ========================================= 
+
+
+=> Total number of independent distance restraints:    25
+DFIX   3.41787  0.00163  Pb  S_4.554
+DFIX   2.61441  0.00176  Pb  O1_2.455
+DFIX   3.26709  0.00099  Pb  O1_3.646
+DFIX   2.61888  0.00174  Pb  O2
+DFIX   3.00702  0.00078  Pb  O2_4.554
+DFIX   2.91193  0.00133  Pb  O3_1.554
+DFIX   2.73093  0.00111  Pb  O3_3.556
+DFIX   2.65708  0.00114  Pb  O3_4.554
+DFIX   1.46924  0.00303  S  O1_1.455
+DFIX   3.28678  0.00303  S  O1_2.456
+DFIX   3.33281  0.00183  S  O1_3.646
+DFIX   1.46070  0.00306  S  O2
+DFIX   1.48887  0.00187  S  O3
+DFIX   3.38703  0.00130  O1  O1_3.746
+DFIX   2.44648  0.00227  O1  O2_1.655
+DFIX   3.10405  0.00208  O1  O2_2.556
+DFIX   2.99281  0.00091  O1  O2_3.646
+DFIX   2.40780  0.00160  O1  O3_1.655
+DFIX   3.09528  0.00174  O1  O3_2.556
+DFIX   3.18659  0.00155  O1  O3_3.656
+DFIX   2.40040  0.00156  O2  O3
+DFIX   2.92580  0.00160  O2  O3_4.554
+DFIX   3.01206  0.00136  O3  O3_5.557
+DFIX   2.99354  0.00122  O3  O3_7.545
+DFIX   2.40373  0.00122  O3  O3_7
+
+=> Total number of possible angle restraints:     0
