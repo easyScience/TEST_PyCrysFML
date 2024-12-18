@@ -69,7 +69,7 @@
        -------------------------------------------------
 
 
-  -> Information on Atom: Pb     at position:    0.18753   0.25000   0.16704  Multiplicity:   4
+  -> Information on Atom: Pb     at position:    0.18754   0.25000   0.16707  Multiplicity:   4
      List of symmetry operators and symmetry elements of the site point group:
      Operator  2:  x,-y+1/2,z                    m x,1/4,z 
      Codes for atom coordinates  (Automatic Constraints):      171.00        0.00      181.00
@@ -77,12 +77,12 @@
 
      --> Complete orbit of the atom: Pb    
 
-         Pb(  1)     0.18753  0.25000  0.16704    x,y,z
-         Pb(  2)     0.68753  0.25000  0.33296    x+1/2,-y+1/2,-z+1/2
-         Pb(  3)     0.81247  0.75000  0.83296    -x,y+1/2,-z
-         Pb(  4)     0.31247  0.75000  0.66704    -x+1/2,-y,z+1/2
+         Pb(  1)     0.18754  0.25000  0.16707    x,y,z
+         Pb(  2)     0.68754  0.25000  0.33293    x+1/2,-y+1/2,-z+1/2
+         Pb(  3)     0.81246  0.75000  0.83293    -x,y+1/2,-z
+         Pb(  4)     0.31246  0.75000  0.66707    -x+1/2,-y,z+1/2
 
-  -> Information on Atom: S      at position:    0.06554   0.25000   0.68384  Multiplicity:   4
+  -> Information on Atom: S      at position:    0.06539   0.25000   0.68414  Multiplicity:   4
      List of symmetry operators and symmetry elements of the site point group:
      Operator  2:  x,-y+1/2,z                    m x,1/4,z 
      Codes for atom coordinates  (Automatic Constraints):      191.00        0.00      201.00
@@ -90,12 +90,12 @@
 
      --> Complete orbit of the atom: S     
 
-         S(  1)      0.06554  0.25000  0.68384    x,y,z
-         S(  2)      0.56554  0.25000  0.81616    x+1/2,-y+1/2,-z+1/2
-         S(  3)      0.93446  0.75000  0.31616    -x,y+1/2,-z
-         S(  4)      0.43446  0.75000  0.18384    -x+1/2,-y,z+1/2
+         S(  1)      0.06539  0.25000  0.68414    x,y,z
+         S(  2)      0.56539  0.25000  0.81586    x+1/2,-y+1/2,-z+1/2
+         S(  3)      0.93461  0.75000  0.31586    -x,y+1/2,-z
+         S(  4)      0.43461  0.75000  0.18414    -x+1/2,-y,z+1/2
 
-  -> Information on Atom: O1     at position:    0.90815   0.25000   0.59540  Multiplicity:   4
+  -> Information on Atom: O1     at position:    0.90823   0.25000   0.59539  Multiplicity:   4
      List of symmetry operators and symmetry elements of the site point group:
      Operator  2:  x,-y+1/2,z                    m x,1/4,z 
      Codes for atom coordinates  (Automatic Constraints):      211.00        0.00      221.00
@@ -103,12 +103,12 @@
 
      --> Complete orbit of the atom: O1    
 
-         O1(  1)     0.90815  0.25000  0.59540    x,y,z
-         O1(  2)     0.40815  0.25000  0.90460    x+1/2,-y+1/2,-z+1/2
-         O1(  3)     0.09185  0.75000  0.40460    -x,y+1/2,-z
-         O1(  4)     0.59185  0.75000  0.09540    -x+1/2,-y,z+1/2
+         O1(  1)     0.90823  0.25000  0.59539    x,y,z
+         O1(  2)     0.40823  0.25000  0.90461    x+1/2,-y+1/2,-z+1/2
+         O1(  3)     0.09177  0.75000  0.40461    -x,y+1/2,-z
+         O1(  4)     0.59177  0.75000  0.09539    -x+1/2,-y,z+1/2
 
-  -> Information on Atom: O2     at position:    0.19348   0.25000   0.54328  Multiplicity:   4
+  -> Information on Atom: O2     at position:    0.19380   0.25000   0.54354  Multiplicity:   4
      List of symmetry operators and symmetry elements of the site point group:
      Operator  2:  x,-y+1/2,z                    m x,1/4,z 
      Codes for atom coordinates  (Automatic Constraints):      231.00        0.00      241.00
@@ -116,21 +116,21 @@
 
      --> Complete orbit of the atom: O2    
 
-         O2(  1)     0.19348  0.25000  0.54328    x,y,z
-         O2(  2)     0.69348  0.25000  0.95672    x+1/2,-y+1/2,-z+1/2
-         O2(  3)     0.80652  0.75000  0.45672    -x,y+1/2,-z
-         O2(  4)     0.30652  0.75000  0.04328    -x+1/2,-y,z+1/2
+         O2(  1)     0.19380  0.25000  0.54354    x,y,z
+         O2(  2)     0.69380  0.25000  0.95646    x+1/2,-y+1/2,-z+1/2
+         O2(  3)     0.80620  0.75000  0.45646    -x,y+1/2,-z
+         O2(  4)     0.30620  0.75000  0.04354    -x+1/2,-y,z+1/2
 
-  -> Information on Atom: O3     at position:    0.08111   0.02732   0.80864  Multiplicity:   8
+  -> Information on Atom: O3     at position:    0.08116   0.02720   0.80856  Multiplicity:   8
      The above atom is in a general position (no constraints in atom positions)
 
      --> Complete orbit of the atom: O3    
 
-         O3(  1)     0.08111  0.02732  0.80864    x,y,z
-         O3(  2)     0.58111  0.47268  0.69136    x+1/2,-y+1/2,-z+1/2
-         O3(  3)     0.91889  0.52732  0.19136    -x,y+1/2,-z
-         O3(  4)     0.41889  0.97268  0.30864    -x+1/2,-y,z+1/2
-         O3(  5)     0.91889  0.97268  0.19136    -x,-y,-z
-         O3(  6)     0.41889  0.52732  0.30864    -x+1/2,y+1/2,z+1/2
-         O3(  7)     0.08111  0.47268  0.80864    x,-y+1/2,z
-         O3(  8)     0.58111  0.02732  0.69136    x+1/2,y,-z+1/2
+         O3(  1)     0.08116  0.02720  0.80856    x,y,z
+         O3(  2)     0.58116  0.47280  0.69144    x+1/2,-y+1/2,-z+1/2
+         O3(  3)     0.91884  0.52720  0.19144    -x,y+1/2,-z
+         O3(  4)     0.41884  0.97280  0.30856    -x+1/2,-y,z+1/2
+         O3(  5)     0.91884  0.97280  0.19144    -x,-y,-z
+         O3(  6)     0.41884  0.52720  0.30856    -x+1/2,y+1/2,z+1/2
+         O3(  7)     0.08116  0.47280  0.80856    x,-y+1/2,z
+         O3(  8)     0.58116  0.02720  0.69144    x+1/2,y,-z+1/2

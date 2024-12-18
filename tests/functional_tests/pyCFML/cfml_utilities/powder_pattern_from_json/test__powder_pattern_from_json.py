@@ -34,12 +34,14 @@ def plot_charts(desired_x:np.ndarray,
                 actual_y:np.ndarray,
                 chi2:float,
                 skip_last:int = 100): # skip last points as FullProf calculation is not good there
+    if not PLOT_CHARTS_IN_TESTS:
+        return
     vertical_shift = 10
     plt.plot(desired_x[:-skip_last], desired_y[:-skip_last])
     plt.plot(actual_x[:-skip_last], actual_y[:-skip_last], linestyle='dotted')
     plt.plot(desired_x[:-skip_last], actual_y[:-skip_last] - desired_y[:-skip_last] - vertical_shift)
     plt.legend(["FullProf", "PyCrysFML"])
-    plt.title(f'{inspect.currentframe().f_code.co_name}, chi2={chi2:.1f}')
+    plt.title(f'{inspect.stack()[1].function}, chi2={chi2:.1f}')
     plt.show()
 
 # Tests
@@ -63,45 +65,7 @@ def test__cw_powder_pattern_from_json__Al2O3_uvwx_noassym(benchmark):
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 
-def test__cw_powder_pattern_from_json__PbSO4_uvwx_noassym(benchmark):
-    # input
-    project = load_from_json(path_to_input('pbso4_uvwx_no-assym.json'))
-    # actual
-    actual_x, actual_y = benchmark(compute_cw_pattern, project)
-    actual_y = actual_y / actual_y.max() * 100  # normalize
-    # desired
-    desired_x, desired_y = sub_to_ndarray(path_to_desired('pbso4_uvwx_no-assym.sub'))
-    desired_y = desired_y / desired_y.max() * 100  # normalize
-    # goodness of fit
-    chi2 = chi_squared(desired_y, actual_y)
-    # compare
-    skip_last = 100
-    assert_almost_equal(176.551, chi2, decimal=3, verbose=True)
-    #assert_almost_equal(desired_x, actual_x, decimal=3, verbose=True)
-    assert_almost_equal(desired_y[:-skip_last], actual_y[:-skip_last], decimal=0, verbose=True)
-    # plot
-    plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
-
-def test__cw_powder_pattern_from_json__PbSO4_uvwy_noassym(benchmark):
-    # input
-    project = load_from_json(path_to_input('pbso4_uvwy_no-assym.json'))
-    # actual
-    actual_x, actual_y = benchmark(compute_cw_pattern, project)
-    actual_y = actual_y / actual_y.max() * 100  # normalize
-    # desired
-    desired_x, desired_y = sub_to_ndarray(path_to_desired('pbso4_uvwy_no-assym.sub'))
-    desired_y = desired_y / desired_y.max() * 100  # normalize
-    # goodness of fit
-    chi2 = chi_squared(desired_y, actual_y)
-    # compare
-    skip_last = 100
-    assert_almost_equal(112.436, chi2, decimal=3, verbose=True)
-    #assert_almost_equal(desired_x, actual_x, decimal=3, verbose=True)
-    assert_almost_equal(desired_y[:-skip_last], actual_y[:-skip_last], decimal=0, verbose=True)
-    # plot
-    plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
-
-def _test__cw_powder_pattern_from_json__PbSO4(benchmark):
+def test__cw_powder_pattern_from_json__PbSO4(benchmark):
     # input
     project = load_from_json(path_to_input('pbso4_cw.json'))
     # actual
@@ -114,8 +78,9 @@ def _test__cw_powder_pattern_from_json__PbSO4(benchmark):
     chi2 = chi_squared(desired_y, actual_y)
     # compare
     skip_last = 100
+    assert_almost_equal(116.607, chi2, decimal=3, verbose=True)
     #assert_almost_equal(desired_x, actual_x, decimal=3, verbose=True)
-    #assert_almost_equal(desired_y[:-skip_last], actual_y[:-skip_last], decimal=0, verbose=True)
+    assert_almost_equal(desired_y[:-skip_last], actual_y[:-skip_last], decimal=0, verbose=True)
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 

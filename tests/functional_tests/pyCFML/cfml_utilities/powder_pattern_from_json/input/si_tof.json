@@ -30,7 +30,7 @@
         "_diffrn_source": "nuclear reactor",
         "_diffrn_radiation_probe": "neutron",
         "_pd_jorg_vondreele_alpha0": 0.0,
-        "_pd_jorg_vondreele_alpha1": 0.57100,
+        "_pd_jorg_vondreele_alpha1": 0.597100,
         "_pd_jorg_vondreele_beta0": 0.042210,
         "_pd_jorg_vondreele_beta1": 0.009460,
         "_pd_jorg_vondreele_gamma0": 0.0,
