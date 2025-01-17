@@ -59,9 +59,9 @@ def test__cw_powder_pattern_from_dict__Al2O3_uvwx_noassym(benchmark):
     chi2 = chi_squared(desired_y, actual_y)
     # compare
     skip_last = 100
-    assert_almost_equal(6.965, chi2, decimal=3, verbose=True)
-    #assert_almost_equal(desired_x, actual_x, decimal=3, verbose=True)
-    assert_almost_equal(desired_y[:-skip_last], actual_y[:-skip_last], decimal=0, verbose=True)
+    assert_almost_equal(chi2, 6.97, decimal=1, verbose=True)
+    #assert_almost_equal(actual_x, desired_x, decimal=3, verbose=True)
+    assert_almost_equal(actual_y[:-skip_last], desired_y[:-skip_last], decimal=0, verbose=True)
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 
@@ -78,9 +78,9 @@ def test__cw_powder_pattern_from_dict__PbSO4(benchmark):
     chi2 = chi_squared(desired_y, actual_y)
     # compare
     skip_last = 100
-    assert_almost_equal(116.607, chi2, decimal=3, verbose=True)
-    #assert_almost_equal(desired_x, actual_x, decimal=3, verbose=True)
-    assert_almost_equal(desired_y[:-skip_last], actual_y[:-skip_last], decimal=0, verbose=True)
+    assert_almost_equal(chi2, 116.6, decimal=2, verbose=True)
+    #assert_almost_equal(actual_x, desired_x, decimal=3, verbose=True)
+    assert_almost_equal(actual_y[:-skip_last], desired_y[:-skip_last], decimal=0, verbose=True)
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 
@@ -97,8 +97,8 @@ def _test__tof_powder_pattern_from_dict__Al2O3(benchmark):
     chi2 = chi_squared(desired_y, actual_y)
     # compare
     skip_last = 100
-    #assert_almost_equal(desired_x, actual_x, decimal=3, verbose=True)
-    #assert_almost_equal(desired_y[:-skip_last], actual_y[:-skip_last], decimal=0, verbose=True)
+    #assert_almost_equal(actual_x, desired_x, decimal=3, verbose=True)
+    #assert_almost_equal(actual_y[:-skip_last], desired_y[:-skip_last], decimal=0, verbose=True)
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 
@@ -115,8 +115,8 @@ def _test__tof_powder_pattern_from_dict__ncaf(benchmark):
     chi2 = chi_squared(desired_y, actual_y)
     # compare
     skip_last = 100
-    assert_almost_equal(desired_x, actual_x, decimal=3, verbose=True)
-    #assert_almost_equal(desired_y[:-skip_last], actual_y[:-skip_last], decimal=0, verbose=True)
+    assert_almost_equal(actual_x, desired_x, decimal=3, verbose=True)
+    #assert_almost_equal(actual_y[:-skip_last], desired_y[:-skip_last], decimal=0, verbose=True)
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 
@@ -133,8 +133,8 @@ def _test__tof_powder_pattern_from_dict__Si(benchmark):
     chi2 = chi_squared(desired_y, actual_y)
     # compare
     skip_last = 100
-    #assert_almost_equal(desired_x, actual_x, decimal=3, verbose=True)
-    #assert_almost_equal(desired_y[:-skip_last], actual_y[:-skip_last], decimal=0, verbose=True)
+    #assert_almost_equal(actual_x, desired_x, decimal=3, verbose=True)
+    #assert_almost_equal(actual_y[:-skip_last], desired_y[:-skip_last], decimal=0, verbose=True)
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 

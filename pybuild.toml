@@ -85,7 +85,8 @@ build-shared = '{COMPILER} -shared CFML_Wraps.{OBJ_EXT} Wraps_*.{OBJ_EXT} {PATH}
 build-exe = '{COMPILER} {OPTIONS} -o {EXE_NAME} {SOURCE_PATH} -I {CFML_INCLUDE_PATH} -L{CFML_LIB_DIR} -l{CFML_LIB_NAME}'
 modes.base = '-cpp -fdec-math -ffree-line-length-none -fno-stack-arrays -fPIC'
 modes.debug = '-O0'
-modes.release = '-march=native -O2 -pipe'
+#modes.release = '-march=native -O2 -pipe'
+modes.release = '-march=native -O2'
 
 [[build-configs]]
 platforms = ['macos']
