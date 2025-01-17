@@ -814,19 +814,6 @@ components-files = [
 ]
 
 [[src-cfml-modules]]
-main-file = 'CFML_Python'
-components-dir = 'CFML_Python'
-components-files = [
-    'Python_Common',
-    'Python_Atoms',
-    'Python_DiffPatt',
-    'Python_Metrics',
-    'Python_Reflections',
-    'Python_gSpaceGroups',
-    'Python_Ndarray'
-]
-
-[[src-cfml-modules]]
 main-file = 'CFML_VTK'
 components-dir = 'CFML_VTK'
 components-files = [
