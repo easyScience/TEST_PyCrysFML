@@ -12,7 +12,7 @@ from tests.helpers import (chi_squared,
                            path_to_desired,
                            sub_to_ndarray)
 
-from pycrysfml import cfml_utilities
+from pycrysfml import cfml_py_utilities
 
 
 PLOT_CHARTS_IN_TESTS = bool(int(os.environ.get('PLOT_CHARTS_IN_TESTS', '0')))
@@ -21,11 +21,11 @@ PLOT_CHARTS_IN_TESTS = bool(int(os.environ.get('PLOT_CHARTS_IN_TESTS', '0')))
 
 def compute_cw_pattern(study_dict:dict):
     #_, y = crysfml08lib.f_powder_pattern_from_json(study_dict)  # returns x and y arrays
-    x, y = cfml_utilities.cw_powder_pattern_from_json(study_dict)  # returns x and y arrays
+    x, y = cfml_py_utilities.cw_powder_pattern_from_dict(study_dict)  # returns x and y arrays
     return x, y
 
 def compute_tof_pattern(study_dict:dict):
-    x, y = cfml_utilities.tof_powder_pattern_from_json(study_dict)  # returns x and y arrays
+    x, y = cfml_py_utilities.cw_powder_pattern_from_dict(study_dict)  # returns x and y arrays
     return x, y
 
 def plot_charts(desired_x:np.ndarray,
@@ -46,7 +46,7 @@ def plot_charts(desired_x:np.ndarray,
 
 # Tests
 
-def test__cw_powder_pattern_from_json__Al2O3_uvwx_noassym(benchmark):
+def test__cw_powder_pattern_from_dict__Al2O3_uvwx_noassym(benchmark):
     # input
     project = load_from_json(path_to_input('al2o3_uvwx_no-assym.json'))
     # actual
@@ -65,7 +65,7 @@ def test__cw_powder_pattern_from_json__Al2O3_uvwx_noassym(benchmark):
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 
-def test__cw_powder_pattern_from_json__PbSO4(benchmark):
+def test__cw_powder_pattern_from_dict__PbSO4(benchmark):
     # input
     project = load_from_json(path_to_input('pbso4_cw.json'))
     # actual
@@ -84,7 +84,7 @@ def test__cw_powder_pattern_from_json__PbSO4(benchmark):
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 
-def _test__tof_powder_pattern_from_json__Al2O3(benchmark):
+def _test__tof_powder_pattern_from_dict__Al2O3(benchmark):
     # input
     project = load_from_json(path_to_input('al2o3_tof.json'))
     # actual
@@ -102,7 +102,7 @@ def _test__tof_powder_pattern_from_json__Al2O3(benchmark):
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 
-def _test__tof_powder_pattern_from_json__ncaf(benchmark):
+def _test__tof_powder_pattern_from_dict__ncaf(benchmark):
     # input
     project = load_from_json(path_to_input('ncaf_tof.json'))
     # actual
@@ -120,7 +120,7 @@ def _test__tof_powder_pattern_from_json__ncaf(benchmark):
     # plot
     plot_charts(desired_x, desired_y, actual_x, actual_y, chi2, skip_last)
 
-def _test__tof_powder_pattern_from_json__Si(benchmark):
+def _test__tof_powder_pattern_from_dict__Si(benchmark):
     # input
     project = load_from_json(path_to_input('si_tof.json'))
     # actual

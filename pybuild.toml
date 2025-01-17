@@ -285,9 +285,6 @@ dependent-libs.macos.arm.gfortran = [
 # CrysFML fortran source files
 ##############################
 
-[[src-cfml-modules]]
-main-file = 'Forpy'
-
 #[[src-cfml-modules]]
 #main-file = 'CFML_Degree_Trigonometric'
 
@@ -846,11 +843,23 @@ components-files = [
 ]
 
 [[src-cfml-modules]]
-main-file = 'CFML_Wraps_Utils'
-components-dir = 'CFML_Wraps_Utils'
+main-file = 'CFML_kvec_Polarimetry'
+components-dir = 'CFML_kvec_Polarimetry'
 components-files = [
-    'Wraps_Utils'
+    'Polar_Calculations_Dom',
+    'Polar_Calculations',
+    'Polar_Functions',
+    'Polar_Init',
+    'Polar_Write'
 ]
+
+
+######################
+# Forpy-dependent code
+######################
+
+[[src-cfml-modules]]
+main-file = 'Forpy'
 
 [[src-cfml-modules]]
 main-file = 'CFML_Utilities'
@@ -860,14 +869,17 @@ components-files = [
 ]
 
 [[src-cfml-modules]]
-main-file = 'CFML_kvec_Polarimetry'
-components-dir = 'CFML_kvec_Polarimetry'
+main-file = 'CFML_Wraps_Utils'
+components-dir = 'CFML_Wraps_Utils'
 components-files = [
-    'Polar_Calculations_Dom',
-    'Polar_Calculations',
-    'Polar_Functions',
-    'Polar_Init',
-    'Polar_Write'
+    'Wraps_Utils'
+]
+
+[[src-cfml-modules]]
+main-file = 'CFML_Py_Utilities'
+components-dir = 'CFML_Py_Utilities'
+components-files = [
+    'Py_Utilities_Patterns'
 ]
 
 ####################################
