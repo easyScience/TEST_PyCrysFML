@@ -68,7 +68,7 @@ def dat_to_ndarray(file_name:str,
     del lines[len(lines)-skip_end:]  # deletes requested number of last lines
     lines = [l.replace('(',' ').replace(')', ' ') for l in lines]  # replace brackets with spaces
     joined = '\n'.join(lines)  # joins into single string
-    data = np.genfromtxt(StringIO(joined), usecols=usecols)  # converts string to ndarray
+    data = np.genfromtxt(StringIO(joined), usecols=usecols, unpack=True)  # converts string to ndarray
     return data
 
 def sub_to_ndarray(file_name:str):
@@ -92,6 +92,9 @@ def load_from_json(file_name:str):
     with open(file_name, 'r') as file:
         return json.load(file)
 
-def chi_squared(calc:np.ndarray, meas:np.ndarray):
+def chi_squared(calc:np.ndarray, meas:np.ndarray, skip_last:int=0):
     """Calculates the chi-squared value between two arrays."""
+    if skip_last:
+        calc = calc[:-skip_last]
+        meas = meas[:-skip_last]
     return np.sum((meas - calc)**2)
